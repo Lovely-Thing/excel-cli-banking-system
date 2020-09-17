@@ -20,7 +20,7 @@ This is a  simple CLI banking application built with python 3.8. wich is able to
 This project uses the follwing external modules to be installed before running the project:
 - openpyxl: A module used to read and write the excel files. [How to Install?](https://openpyxl.readthedocs.io/en/stable/)
 - pyinputplus: A module used to validate user inputs to the system. [How to Install?](https://pypi.org/project/PyInputPlus/)
--fpdf: A module used for working with pdf files. [How to Install](https://pypi.org/project/fpdf/)
+- fpdf: A module used for working with pdf files. [How to Install](https://pypi.org/project/fpdf/)
 # Structure of project
 This project consist of 6 python files and one excel file.
   1. main.py: This is the starting point of the project. **_We must run the project from main.py_**. This File is calling the function to start the project.
