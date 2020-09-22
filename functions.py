@@ -1,19 +1,27 @@
 import sys
 import pyinputplus as pyip
-import bank_operations_ui 
+from bank_operations_ui import BankOperationsUi
 
 operations = {
-    "Open New Account": bank_operations_ui.BankOperationsUi.open_account,
-    "Withdraw Money": bank_operations_ui.BankOperationsUi.withdraw_money,
-    "Deposit Money": bank_operations_ui.BankOperationsUi.deposit_money,
-    "Check Clients & Balance": bank_operations_ui.BankOperationsUi.check_balance,
-    "Delete an Account": bank_operations_ui.BankOperationsUi.delete_account
+    "Open New Account": BankOperationsUi.open_account,
+    "Withdraw Money": BankOperationsUi.withdraw_money,
+    "Deposit Money": BankOperationsUi.deposit_money,
+    "Check Clients & Balance": BankOperationsUi.check_balance,
+    "Delete an Account": BankOperationsUi.delete_account
     }
 
 
 def check_choice(choice):
-    """
-    This Function is going to call the desired function based of user choice.
+    """This function check user choice.
+
+    If the choice is among the choices it calls the desired function for that.
+    if the choice is quit then it teminates the program.
+
+    Parameters:
+    ----------
+    choice: string -- User entered choice
+
+    Return: None
     """
     if choice in operations:
         operations[choice]()
@@ -22,7 +30,14 @@ def check_choice(choice):
 
 
 def start_program():
-    """This Function is used to start the program"""
+    """This Function is used to start the program.
+    
+    It ask user to choose and option from bank operations. only a few number of
+    choices are allowed. If the user choice is among bank operations choices 
+    then it call the check_choice() function.
+
+    Return : None
+    """
     print("---------------------------------------------")
     choice = pyip.inputMenu(
         [

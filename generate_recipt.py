@@ -5,7 +5,13 @@ from datetime import datetime
 import fpdf
 
 class Recipt:
-    """Generate recipt for users"""
+    """This class contains methods for generating recipts.
+
+    Public Methods:
+    --------------
+    check_balance(): -- It generate a receipt for checking balance operation 
+        and call the open_file() functioin to directly of
+    """
     
     @staticmethod
     def check_balance(id,balance):
