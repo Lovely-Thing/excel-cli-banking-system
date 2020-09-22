@@ -1,7 +1,19 @@
+import re
 import pyinputplus as pyip
 import messages
 from bank_operations_backend import BankOperationsBackend
 
+def raiseNameError(text):
+    """This function raise error if name does not match the pattern"""
+    pattern = re.compile("[a-zA-Z]")
+    if not pattern.match(text):
+        raise Exception("Invalid Name Entered")
+
+def raiseAddressError(text):
+    """This function raise error if address does not match the pattern"""
+    pattern = re.compile("^[a-zA-Z]+[0-9]*")
+    if not pattern.match(text):
+        raise Exception("Invalid Address Entered")
 
 class BankOperationsUi:
     """This class contains all operations related to bank interface.
@@ -29,8 +41,8 @@ class BankOperationsUi:
         print("\n")
         print(messages.open_account)
         u_id = pyip.inputInt("Id: ", greaterThan=0)
-        name = pyip.inputRegex("[a-zA-z]",prompt="Name: ")
-        address = pyip.inputStr("Address: ")
+        name = pyip.inputCustom(raiseNameError, prompt="Name: ")
+        address = pyip.inputCustom(raiseAddressError, prompt="Address: ")
         email = pyip.inputEmail("Email: ")
         balance = pyip.inputInt("Balance: ", min=0)
         password = pyip.inputPassword("Password: ")

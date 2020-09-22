@@ -9,14 +9,17 @@ class Recipt:
 
     Public Methods:
     --------------
-    check_balance(): -- It generate a receipt for checking balance operation 
-        and call the open_file() functioin to directly of
+    check_balance(): -- It generate a receipt for checking balance. 
+        and call the open_file() functioin to directly open the generated pdf
+        reciept.
     """
     
     @staticmethod
-    def check_balance(id,balance):
-        """This function create a recipt bill for checking balance and open the
-         file"""
+    def check_balance(id, balance):
+        """It generate a receipt for checking balance. 
+        and call the open_file() functioin to directly open the generated pdf
+        reciept.
+        """
         recipt = fpdf.FPDF('P', 'mm', (115,93))
         recipt.add_page()
         recipt.set_font('Arial', '', 9)
@@ -35,20 +38,10 @@ class Recipt:
 
         
 def run_file(filename):
-    """ 
-        This Function opens the pdf file after it has been created.
-        os.startfile() is python function which opens file in windows only.
-        to make it work in all part we have to check platform and run it.
-        win32 == windows
-        darwin == unix
-        but in other systems we run a programm using subprocess.call()
-        which is used to run the operating system command line commands using 
-        our code.
-        ex: to run program in linux we say (xdg-open 'filename')  in terminal.
-        so to run the command we use subprocess.call() method
-        Note: I write this code using many resources. 
-        (stackoverflow, studied: os.startfile(), sys.platform(), 
-        subprocess.call())
+    """Open the pdf reciept.
+
+    It checks the operating system and based on the operating system it opens
+    the pdf file.
     """
     platform = sys.platform
     if platform == "win32":

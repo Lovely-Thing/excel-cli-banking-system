@@ -10,7 +10,7 @@ try:
     rows = sheet.max_row
     cols = sheet.max_column
     columns = {}
-    for col_num in range(1,cols+1):
+    for col_num in range(1, cols+1):
         columns[f"{sheet.cell(row=1, column=col_num).value}"] = col_num
 
 except (FileNotFoundError) as error:

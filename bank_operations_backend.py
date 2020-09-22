@@ -1,6 +1,7 @@
+import re
 import pyinputplus as pyip
 import messages
-import generate_recipt
+from generate_recipt import Recipt
 from connections import bank_data, rows, cols, sheet, columns
 
 
@@ -46,7 +47,7 @@ class BankOperationsBackend:
         if not are_unique:
             return False
 
-        for turn in range(1,cols+1):
+        for turn in range(1, cols+1):
             sheet.cell(row=rows+1, column=turn, value=data[turn-1])
             bank_data.save("bank_data.xlsx")
 
@@ -59,7 +60,7 @@ class BankOperationsBackend:
         return True
 
     @staticmethod
-    def __check_email_id_existance(uid,email):
+    def __check_email_id_existance(uid, email):
         """This private function ensure the email to be unique in the database
         
         Parameters:
@@ -73,7 +74,7 @@ class BankOperationsBackend:
         True: If email and Id are not in database
         """
 
-        for row in range(1,rows+1):
+        for row in range(1, rows+1):
             db_id_value = sheet.cell(row=row, column=columns['ID']).value
             db_email_value = sheet.cell(row=row, column=columns['Email']).value
             
@@ -150,7 +151,7 @@ class BankOperationsBackend:
 
             print("\n")
             withdraw_amount = pyip.inputInt(
-                "Amount of money you want to withdraw: ",greaterThan=0)
+                "Amount of money you want to withdraw: ", greaterThan=0)
 
             if withdraw_amount > balance_cell.value:
                 print(messages.not_enough_balance 
@@ -226,7 +227,7 @@ class BankOperationsBackend:
             return False
 
         print("\n")
-        generate_recipt.Recipt.check_balance(data['id'], balance_cell.value)
+        Recipt.check_balance(data['id'], balance_cell.value)
         
         print(messages.balance_result.format(balance_cell.value))
         print("\n")
@@ -251,8 +252,8 @@ class BankOperationsBackend:
         """
         global rows
         global cols
-        for row in range(2,rows+1):
-            db_id_value = sheet.cell(row=row,column=columns["ID"]).value
+        for row in range(2, rows+1):
+            db_id_value = sheet.cell(row=row, column=columns["ID"]).value
             if data['id'] == db_id_value:
                 sheet.delete_rows(row)
                 bank_data.save("bank_data.xlsx")
@@ -282,7 +283,7 @@ class BankOperationsBackend:
         False: if the id and password does not match the database.
         balnce_cell: if the credentials matches the database.
         """
-        for row in range(2,rows+1):
+        for row in range(2, rows+1):
             db_id_value = sheet.cell(row=row, column=columns["ID"]).value
             db_pass_value = sheet.cell(row=row, 
                 column=columns["Password"]).value

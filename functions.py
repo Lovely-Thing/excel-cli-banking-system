@@ -42,8 +42,8 @@ def start_program():
     choice = pyip.inputMenu(
         [
             "Open New Account", "Withdraw Money", "Deposit Money", 
-            "Check Clients & Balance","Delete an Account","Quit"
+            "Check Clients & Balance", "Delete an Account", "Quit"
         ]
-        ,numbered=True)
+        , numbered=True)
         
     check_choice(choice)
