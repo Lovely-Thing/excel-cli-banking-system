@@ -1,4 +1,4 @@
-# netlinks-banking_system
+# banking_system
 This is a  simple CLI banking application built with python 3.8. wich is able to:
 1. Open New Client Account
   - Client account informations are stored in xlsx file.
